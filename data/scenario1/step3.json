@@ -1,0 +1,23 @@
+{
+  "operation": "status",
+  "subsystem": "vio",
+  "state": {
+    "stateName": "documentCreated",
+    "stateDescription": "УПП сформирован"
+  },
+  "processType": "szvTDfo",
+  "additionalInfo": {
+    "regnum": "25687436594",
+    "fullName": "ООО Федотова 1",
+    "opfrCode": "2142",
+    "inn": "7777774321",
+    "kpp": "5548962441",
+    "snils": "1456215645",
+    "toCode": "12"
+  },
+  "packageId": "1111",
+  "requestId": "",
+  "yodId": null,
+  "yppId": null,
+  "yoonpuId": null
+}

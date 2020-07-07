@@ -1,0 +1,23 @@
+{
+  "operation": "status",
+  "subsystem": "vio",
+  "state": {
+    "stateName": "processRejected",
+    "stateDescription": "Отказ в регистрации"
+  },
+  "processType": "szvTDfo",
+  "additionalInfo": {
+    "regnum": "12587436594",
+    "fullName": "ООО Федотова 2",
+    "opfrCode": "1442",
+    "inn": "7777774785",
+    "kpp": "5554789544",
+    "snils": "1451455645",
+    "toCode": "16"
+  },
+  "packageId": "2222",
+  "requestId": "",
+  "yodId": null,
+  "yppId": null,
+  "yoonpuId": null
+}
