@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="packetListTimer" elementType="Argument">
+            <stringProp name="Argument.name">packetListTimer</stringProp>
+            <stringProp name="Argument.value">5000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="scenarioDuration" elementType="Argument">
+            <stringProp name="Argument.name">scenarioDuration</stringProp>
+            <stringProp name="Argument.value">0</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="threadsQuantity" elementType="Argument">
+            <stringProp name="Argument.name">threadsQuantity</stringProp>
+            <stringProp name="Argument.value">6000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="readPacketsDuration" elementType="Argument">
+            <stringProp name="Argument.name">readPacketsDuration</stringProp>
+            <stringProp name="Argument.value">900</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="stepTimer" elementType="Argument">
+            <stringProp name="Argument.name">stepTimer</stringProp>
+            <stringProp name="Argument.value">0</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="scenarioTimer" elementType="Argument">
+            <stringProp name="Argument.name">scenarioTimer</stringProp>
+            <stringProp name="Argument.value">0</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="rampupPeriod" elementType="Argument">
+            <stringProp name="Argument.name">rampupPeriod</stringProp>
+            <stringProp name="Argument.value">600</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Host" enabled="true">
+        <stringProp name="filename">data_utp/host.csv</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">kafkaserver,site</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Database" enabled="true">
+        <stringProp name="filename">data_utp/database.csv</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">dburl,dbuser,dbpassword</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="MQConnection" enabled="true">
+        <stringProp name="filename">data_utp/mqConnection.csv</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">hostName,hostPort,channelName,queueManagerName,queueName,user,password</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener" enabled="true">
+        <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="influxdbMetricsSender" elementType="Argument">
+              <stringProp name="Argument.name">influxdbMetricsSender</stringProp>
+              <stringProp name="Argument.value">org.apache.jmeter.visualizers.backend.influxdb.HttpMetricsSender</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="influxdbUrl" elementType="Argument">
+              <stringProp name="Argument.name">influxdbUrl</stringProp>
+              <stringProp name="Argument.value">http://localhost:8086/write?db=jmeterdb</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="application" elementType="Argument">
+              <stringProp name="Argument.name">application</stringProp>
+              <stringProp name="Argument.value">${TESTSTART.MS}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="measurement" elementType="Argument">
+              <stringProp name="Argument.name">measurement</stringProp>
+              <stringProp name="Argument.value">jmeter</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="summaryOnly" elementType="Argument">
+              <stringProp name="Argument.name">summaryOnly</stringProp>
+              <stringProp name="Argument.value">false</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="samplersRegex" elementType="Argument">
+              <stringProp name="Argument.name">samplersRegex</stringProp>
+              <stringProp name="Argument.value">.*</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="percentiles" elementType="Argument">
+              <stringProp name="Argument.name">percentiles</stringProp>
+              <stringProp name="Argument.value">100</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="testTitle" elementType="Argument">
+              <stringProp name="Argument.name">testTitle</stringProp>
+              <stringProp name="Argument.value">Test name</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="eventTags" elementType="Argument">
+              <stringProp name="Argument.name">eventTags</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </elementProp>
+        <stringProp name="classname">org.apache.jmeter.visualizers.backend.influxdb.InfluxdbBackendListenerClient</stringProp>
+      </BackendListener>
+      <hashTree/>
+      <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </SetupThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="setUp Scenario 1" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">List chainOfSteps = Arrays.asList(new File(&apos;data_utp/scenario1/step1.json&apos;).text,
+new File(&apos;data_utp/scenario1/step2.json&apos;).text,
+new File(&apos;data_utp/scenario1/step3.json&apos;).text,
+new File(&apos;data_utp/scenario1/step4.json&apos;).text,
+new File(&apos;data_utp/scenario1/step5.json&apos;).text);
+
+props.put(&quot;SCENARIO1&quot;,chainOfSteps);</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Open DB Connection" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+
+address = vars.get(&quot;dburl&quot;);
+user = vars.get(&quot;dbuser&quot;);
+password = vars.get(&quot;dbpassword&quot;);
+
+Cluster cluster = Cluster.builder().addContactPoint(address).withPort(9042).withCredentials(user,password).withoutJMXReporting().build();
+Session session = cluster.connect(&quot;utp&quot;);
+
+props.put(&quot;dbCluster&quot;, cluster);
+props.put(&quot;dbSession&quot;, session);</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Read DB Tickets Start" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">def session = props.get(&quot;dbSession&quot;);
+def results = session.execute(&quot;SELECT sum(amount) as mycount FROM ticket_counter&quot;);
+String size = String.valueOf(results.last().getLong(&quot;mycount&quot;));
+
+props.put(&quot;tickets&quot;,size);
+SampleResult.setSampleCount(Integer.parseInt(size));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Read DB Packets Start" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">def session = props.get(&quot;dbSession&quot;);
+def results = session.execute(&quot;SELECT sum(amount) as mycount FROM actual_package_state_counter&quot;);
+String size = String.valueOf(results.last().getLong(&quot;mycount&quot;));
+
+props.put(&quot;packets&quot;,size);
+SampleResult.setSampleCount(Integer.parseInt(size));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Create Connection to the IBM MQ Service" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import com.ibm.msg.client.jms.JmsConnectionFactory
+import com.ibm.msg.client.jms.JmsFactoryFactory
+import com.ibm.msg.client.wmq.WMQConstants
+
+import javax.jms.Session
+
+
+def hostName = vars.get(&quot;hostName&quot;);
+def hostPort = Integer.parseInt(vars.get(&quot;hostPort&quot;));
+def channelName = vars.get(&quot;channelName&quot;);
+def queueManagerName = vars.get(&quot;queueManagerName&quot;);
+def queueName = vars.get(&quot;queueName&quot;);
+def user = vars.get(&quot;user&quot;);
+def password = vars.get(&quot;password&quot;);
+
+
+def ff = JmsFactoryFactory.getInstance(WMQConstants.WMQ_PROVIDER)
+def cf = ff.createConnectionFactory()
+
+cf.setStringProperty(WMQConstants.WMQ_HOST_NAME, hostName)
+cf.setIntProperty(WMQConstants.WMQ_PORT, hostPort)
+cf.setStringProperty(WMQConstants.WMQ_CHANNEL, channelName)
+cf.setIntProperty(WMQConstants.WMQ_CONNECTION_MODE, WMQConstants.WMQ_CM_CLIENT)
+cf.setStringProperty(WMQConstants.WMQ_QUEUE_MANAGER, queueManagerName)
+
+
+def conn = cf.createConnection(user, password)
+def sess = conn.createSession(false, Session.AUTO_ACKNOWLEDGE)
+def destination = sess.createQueue(queueName)
+
+conn.start()
+props.put(&quot;mqSession&quot;, sess)
+props.put(&quot;mqConnection&quot;, conn)
+props.put(&quot;mqDestination&quot;, destination)
+
+def producer = sess.createProducer(destination)
+props.put(&quot;mqProducer&quot;, producer)</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Create Kafka producer" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">false</stringProp>
+          <stringProp name="script">import java.util.Properties;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+
+
+String kafkaserver = vars.get(&quot;kafkaserver&quot;);
+      
+Properties kprops = new Properties(); 
+kprops.put(&quot;producer.type&quot;,&quot;async&quot;);
+kprops.put(&quot;bootstrap.servers&quot;, kafkaserver + &quot;:9092&quot;);    
+kprops.put(&quot;acks&quot;, &quot;all&quot;);    
+kprops.put(&quot;max.in.flight.requests.per.connection&quot;,2); 
+kprops.put(&quot;retries&quot;, 1);     
+kprops.put(&quot;batch.size&quot;, 5000);      
+kprops.put(&quot;linger.ms&quot;, 1);      
+kprops.put(&quot;buffer.memory&quot;, 33554432);      
+kprops.put(&quot;key.serializer&quot;,&quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+kprops.put(&quot;value.serializer&quot;,&quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+      
+Producer&lt;String, String&gt; producer = new KafkaProducer&lt;String, String&gt;(kprops);
+
+props.put(&quot;kafkaProducer&quot;, producer);</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">2000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Kafka Producer" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${threadsQuantity}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${rampupPeriod}</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">${scenarioDuration}</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Scenario 1 steps" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.util.UUID;
+String myUUID = UUID.randomUUID().toString();
+vars.put(&quot;scenario1step_1&quot;, props.get(&quot;SCENARIO1&quot;).get(0).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_2&quot;, props.get(&quot;SCENARIO1&quot;).get(1).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_3&quot;, props.get(&quot;SCENARIO1&quot;).get(2).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_4&quot;, props.get(&quot;SCENARIO1&quot;).get(3).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_5&quot;, props.get(&quot;SCENARIO1&quot;).get(4).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;myUUID&quot;,myUUID);</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach step in scenario 1" enabled="true">
+          <stringProp name="ForeachController.inputVal">scenario1step</stringProp>
+          <stringProp name="ForeachController.returnVal">message</stringProp>
+          <boolProp name="ForeachController.useSeparator">true</boolProp>
+        </ForeachController>
+        <hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Producer Sampler" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import org.apache.kafka.clients.producer.ProducerRecord;
+
+String message = vars.get(&quot;message&quot;); 
+String topicName = &quot;IN_MESSAGE_TICKET&quot;;
+String myUUID = vars.get(&quot;myUUID&quot;);            
+props.get(&quot;kafkaProducer&quot;).send(new ProducerRecord&lt;String, String&gt;(topicName,myUUID,message));
+</stringProp>
+            <stringProp name="scriptLanguage">groovy</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="IBM Producer" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${threadsQuantity}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${rampupPeriod}</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay">${scenarioDuration}</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Scenario 1 steps" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">import java.util.UUID;
+String myUUID = UUID.randomUUID().toString();
+vars.put(&quot;scenario1step_1&quot;, props.get(&quot;SCENARIO1&quot;).get(0).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_2&quot;, props.get(&quot;SCENARIO1&quot;).get(1).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_3&quot;, props.get(&quot;SCENARIO1&quot;).get(2).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_4&quot;, props.get(&quot;SCENARIO1&quot;).get(3).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;scenario1step_5&quot;, props.get(&quot;SCENARIO1&quot;).get(4).replace(&quot;\&quot;requestId\&quot;: \&quot;\&quot;&quot;,&quot;\&quot;requestId\&quot;: \&quot;&quot;+myUUID+&quot;\&quot;&quot;));
+vars.put(&quot;myUUID&quot;,myUUID);</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach step in scenario 1" enabled="true">
+          <stringProp name="ForeachController.inputVal">scenario1step</stringProp>
+          <stringProp name="ForeachController.returnVal">message</stringProp>
+          <boolProp name="ForeachController.useSeparator">true</boolProp>
+        </ForeachController>
+        <hashTree>
+          <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Producer Sampler" enabled="true">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="script">//import java.time.Instant
+
+def sess = props.get(&quot;mqSession&quot;)
+def destination = props.get(&quot;mqDestination&quot;)
+def producer = props.get(&quot;mqProducer&quot;)
+
+
+def payload = vars.get(&quot;message&quot;); 
+def msg = sess.createTextMessage(payload)
+//def start = Instant.now()
+producer.send(msg)
+//def stop = Instant.now()
+
+
+//SampleResult.setResponseData(msg.toString())
+//SampleResult.setDataType( org.apache.jmeter.samplers.SampleResult.TEXT )
+//SampleResult.setLatency( stop.toEpochMilli() - start.toEpochMilli() )</stringProp>
+          </JSR223Sampler>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="READ PACKETS FROM DB" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">${readPacketsDuration}</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Read Packet Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">${packetListTimer}</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Read DB Tickets" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">def session = props.get(&quot;dbSession&quot;);
+def results = session.execute(&quot;SELECT sum(amount) as mycount FROM ticket_counter&quot;);
+String size = String.valueOf(results.last().getLong(&quot;mycount&quot;) - Long.parseLong(props.get(&quot;tickets&quot;)));
+
+
+vars.put(&quot;tickets&quot;,size);
+SampleResult.setSampleCount(Integer.parseInt(size));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Read DB Packets" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">def session = props.get(&quot;dbSession&quot;);
+def results = session.execute(&quot;SELECT sum(amount) as mycount FROM actual_package_state_counter&quot;);
+String size = String.valueOf(results.last().getLong(&quot;mycount&quot;) - Long.parseLong(props.get(&quot;packets&quot;)));
+
+vars.put(&quot;packets&quot;,size);
+SampleResult.setSampleCount(Integer.parseInt(size));</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </PostThreadGroup>
+      <hashTree>
+        <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+          <stringProp name="ConstantTimer.delay">2000</stringProp>
+        </ConstantTimer>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Close DB Connection" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">props.get(&quot;dbSession&quot;).close();
+props.get(&quot;dbCluster&quot;).close();</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Close Connection to the IBM MQ Service" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">props.get(&quot;mqSession&quot;).close()
+props.get(&quot;mqConnection&quot;).close()
+props.get(&quot;mqProducer&quot;).close()</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="Close Kafka Producer" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">props.get(&quot;kafkaProducer&quot;).close();</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="tearDown Clear properties" enabled="true">
+          <stringProp name="scriptLanguage">groovy</stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="script">props.clear();</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
