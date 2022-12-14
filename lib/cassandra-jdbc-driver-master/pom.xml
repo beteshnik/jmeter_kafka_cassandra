@@ -18,7 +18,7 @@
         <fastutil.version>7.0.12</fastutil.version>
         <docker-client.version>3.5.12</docker-client.version>
         -->
-        <snakeyaml.version>1.18</snakeyaml.version>
+        <snakeyaml.version>1.32</snakeyaml.version>
         <jsqlparser.version>0.9.6</jsqlparser.version>
         <datastax-driver.version>3.1.4</datastax-driver.version>
         <snappy.version>1.1.2.6</snappy.version>
